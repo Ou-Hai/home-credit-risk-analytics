@@ -1,20 +1,21 @@
-**===== Python / uv =====**
+# ===== Data =====
+data/raw/*
+data/processed/*
 
+# ===== Python / uv =====
 .venv/
-pycache/
+__pycache__/
 *.pyc
 
-**===== Jupyter =====**
 
+# ===== Jupyter =====
 .ipynb_checkpoints/
 notebooks/.ipynb_checkpoints/
 
-**===== Environment variables =====**
-
+# ===== Environment variables =====
 .env
 notebooks/.env
 
-**===== macOS =====**
-
+# ===== macOS =====
 .DS_Store
 notebooks/.DS_Store
