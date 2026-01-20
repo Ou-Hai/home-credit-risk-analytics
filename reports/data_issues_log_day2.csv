@@ -1,0 +1,4 @@
+table,field,issue_type,symptom,why_it_happens,recommended_action
+application_train,DAYS_EMPLOYED,Technical placeholder,Value 365243 appears very frequently,Known placeholder meaning 'no formal employment history',Create flag (DAYS_EMPLOYED_PLACEHOLDER=1) and replace 365243 with NaN
+application_train,COMMONAREA_*/LIVINGAPARTMENTS_* (and similar housing vars),Business-driven missingness,~70% missing,Housing info not registered / not applicable for some applicants,Keep missing indicator; consider imputation + add is_missing flag
+application_train,FLAG_DOCUMENT_* / FLAG_MOBIL / similar binary flags,Highly imbalanced feature,Most frequent value accounts for >99% of observations,Certain documents or attributes are rarely present in the applicant population,Keep for modeling; consider variance-based filtering if needed
