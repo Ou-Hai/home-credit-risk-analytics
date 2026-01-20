@@ -163,4 +163,42 @@ def clean_application(df: pd.DataFrame) -> pd.DataFrame:
     out = add_age_features(out)
     out = clean_income(out)
     out = clean_credit_amount(out)
+    out = cast_dtypes_application(out)
+    
     return out
+
+
+def cast_dtypes_application(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Cast dtypes for application table:
+    - binary flags -> int8
+    - identifiers -> nullable Int64
+    - object columns -> category
+    """
+    df = df.copy()
+
+    # IDs
+    if "SK_ID_CURR" in df.columns:
+        df["SK_ID_CURR"] = pd.to_numeric(df["SK_ID_CURR"], errors="coerce").astype("Int64")
+
+    # TARGET
+    if "TARGET" in df.columns:
+        df["TARGET"] = df["TARGET"].astype("int8")
+
+    # Binary flags
+    flag_cols = [c for c in df.columns if c.startswith("FLAG_")]
+    for c in flag_cols:
+        vals = df[c].dropna().unique()
+        if set(vals).issubset({0, 1}):
+            df[c] = df[c].astype("int8")
+
+    # Engineered flags
+    for c in ["AGE_OUTLIER", "INCOME_OUTLIER", "CREDIT_OUTLIER"]:
+        if c in df.columns:
+            df[c] = df[c].astype("int8")
+
+    # Object → category
+    for c in df.select_dtypes(include=["object"]).columns:
+        df[c] = df[c].astype("category")
+
+    return df
