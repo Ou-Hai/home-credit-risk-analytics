@@ -1,0 +1,168 @@
+table,column,dtype,missing_count,missing_pct,missing_reason,action,method,rationale
+POS_CASH_balance,CNT_INSTALMENT,float64,26071,0.26,Incomplete monthly record / boundary month,Keep,No action at row level; handle in aggregation,POS_CASH_balance is aggregated later; minor missingness handled naturally in stats.
+POS_CASH_balance,CNT_INSTALMENT_FUTURE,float64,26087,0.26,Incomplete monthly record / boundary month,Keep,No action at row level; handle in aggregation,POS_CASH_balance is aggregated later; minor missingness handled naturally in stats.
+application_test,COMMONAREA_AVG,float64,33495,68.72,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_test,COMMONAREA_MODE,float64,33495,68.72,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_test,COMMONAREA_MEDI,float64,33495,68.72,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_test,NONLIVINGAPARTMENTS_AVG,float64,33347,68.41,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_test,NONLIVINGAPARTMENTS_MODE,float64,33347,68.41,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_test,NONLIVINGAPARTMENTS_MEDI,float64,33347,68.41,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_test,FONDKAPREMONT_MODE,object,32797,67.28,,,,
+application_test,LIVINGAPARTMENTS_AVG,float64,32780,67.25,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_test,LIVINGAPARTMENTS_MODE,float64,32780,67.25,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_test,LIVINGAPARTMENTS_MEDI,float64,32780,67.25,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_test,FLOORSMIN_AVG,float64,32466,66.61,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_test,FLOORSMIN_MODE,float64,32466,66.61,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_test,FLOORSMIN_MEDI,float64,32466,66.61,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_test,OWN_CAR_AGE,float64,32312,66.29,Client does not own a car,Keep,Add missing indicator; keep NaN,Car ownership is a strong socioeconomic signal; missing implies no car.
+application_test,YEARS_BUILD_AVG,float64,31818,65.28,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_test,YEARS_BUILD_MODE,float64,31818,65.28,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_test,YEARS_BUILD_MEDI,float64,31818,65.28,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_test,LANDAREA_AVG,float64,28254,57.96,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_test,LANDAREA_MODE,float64,28254,57.96,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_test,LANDAREA_MEDI,float64,28254,57.96,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_test,BASEMENTAREA_AVG,float64,27641,56.71,,,,
+application_test,BASEMENTAREA_MODE,float64,27641,56.71,,,,
+application_test,BASEMENTAREA_MEDI,float64,27641,56.71,,,,
+application_test,NONLIVINGAREA_AVG,float64,26084,53.51,,,,
+application_test,NONLIVINGAREA_MODE,float64,26084,53.51,,,,
+application_test,NONLIVINGAREA_MEDI,float64,26084,53.51,,,,
+application_test,ELEVATORS_AVG,float64,25189,51.68,,,,
+application_test,ELEVATORS_MODE,float64,25189,51.68,,,,
+application_test,ELEVATORS_MEDI,float64,25189,51.68,,,,
+application_test,WALLSMATERIAL_MODE,object,23893,49.02,,,,
+application_test,APARTMENTS_AVG,float64,23887,49.01,,,,
+application_test,APARTMENTS_MODE,float64,23887,49.01,,,,
+application_test,APARTMENTS_MEDI,float64,23887,49.01,,,,
+application_test,HOUSETYPE_MODE,object,23619,48.46,,,,
+application_test,ENTRANCES_AVG,float64,23579,48.37,,,,
+application_test,ENTRANCES_MODE,float64,23579,48.37,,,,
+application_test,ENTRANCES_MEDI,float64,23579,48.37,,,,
+application_test,LIVINGAREA_AVG,float64,23552,48.32,,,,
+application_test,LIVINGAREA_MODE,float64,23552,48.32,,,,
+application_test,LIVINGAREA_MEDI,float64,23552,48.32,,,,
+application_test,FLOORSMAX_AVG,float64,23321,47.84,,,,
+application_test,FLOORSMAX_MODE,float64,23321,47.84,,,,
+application_test,FLOORSMAX_MEDI,float64,23321,47.84,,,,
+application_test,YEARS_BEGINEXPLUATATION_AVG,float64,22856,46.89,,,,
+application_test,YEARS_BEGINEXPLUATATION_MODE,float64,22856,46.89,,,,
+application_test,YEARS_BEGINEXPLUATATION_MEDI,float64,22856,46.89,,,,
+application_test,TOTALAREA_MODE,float64,22624,46.41,,,,
+application_test,EMERGENCYSTATE_MODE,object,22209,45.56,,,,
+application_test,EXT_SOURCE_1,float64,20532,42.12,,,,
+application_test,OCCUPATION_TYPE,object,15605,32.01,,,,
+application_test,EXT_SOURCE_3,float64,8668,17.78,,,,
+application_test,AMT_REQ_CREDIT_BUREAU_HOUR,float64,6049,12.41,,,,
+application_test,AMT_REQ_CREDIT_BUREAU_DAY,float64,6049,12.41,,,,
+application_test,AMT_REQ_CREDIT_BUREAU_WEEK,float64,6049,12.41,,,,
+application_test,AMT_REQ_CREDIT_BUREAU_MON,float64,6049,12.41,,,,
+application_test,AMT_REQ_CREDIT_BUREAU_QRT,float64,6049,12.41,,,,
+application_test,AMT_REQ_CREDIT_BUREAU_YEAR,float64,6049,12.41,,,,
+application_test,NAME_TYPE_SUITE,object,911,1.87,,,,
+application_test,OBS_30_CNT_SOCIAL_CIRCLE,float64,29,0.06,,,,
+application_test,DEF_30_CNT_SOCIAL_CIRCLE,float64,29,0.06,,,,
+application_test,OBS_60_CNT_SOCIAL_CIRCLE,float64,29,0.06,,,,
+application_test,DEF_60_CNT_SOCIAL_CIRCLE,float64,29,0.06,,,,
+application_test,AMT_ANNUITY,float64,24,0.05,,,,
+application_test,EXT_SOURCE_2,float64,8,0.02,,,,
+application_train,COMMONAREA_AVG,float64,214865,69.87,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_train,COMMONAREA_MODE,float64,214865,69.87,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_train,COMMONAREA_MEDI,float64,214865,69.87,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_train,NONLIVINGAPARTMENTS_AVG,float64,213514,69.43,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_train,NONLIVINGAPARTMENTS_MODE,float64,213514,69.43,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_train,NONLIVINGAPARTMENTS_MEDI,float64,213514,69.43,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_train,FONDKAPREMONT_MODE,object,210295,68.39,,,,
+application_train,LIVINGAPARTMENTS_AVG,float64,210199,68.35,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_train,LIVINGAPARTMENTS_MODE,float64,210199,68.35,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_train,LIVINGAPARTMENTS_MEDI,float64,210199,68.35,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_train,FLOORSMIN_AVG,float64,208642,67.85,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_train,FLOORSMIN_MODE,float64,208642,67.85,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_train,FLOORSMIN_MEDI,float64,208642,67.85,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_train,YEARS_BUILD_AVG,float64,204488,66.5,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_train,YEARS_BUILD_MODE,float64,204488,66.5,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_train,YEARS_BUILD_MEDI,float64,204488,66.5,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_train,OWN_CAR_AGE,float64,202929,65.99,Client does not own a car,Keep,Add missing indicator; keep NaN,Car ownership is a strong socioeconomic signal; missing implies no car.
+application_train,LANDAREA_AVG,float64,182590,59.38,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_train,LANDAREA_MODE,float64,182590,59.38,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_train,LANDAREA_MEDI,float64,182590,59.38,Not applicable (no property / not assessed),Keep,Add missing indicator; no direct imputation,High missing rate reflects non-applicability. Missingness itself is informative in credit risk.
+application_train,BASEMENTAREA_AVG,float64,179943,58.52,,,,
+application_train,BASEMENTAREA_MODE,float64,179943,58.52,,,,
+application_train,BASEMENTAREA_MEDI,float64,179943,58.52,,,,
+application_train,EXT_SOURCE_1,float64,173378,56.38,,,,
+application_train,NONLIVINGAREA_AVG,float64,169682,55.18,,,,
+application_train,NONLIVINGAREA_MODE,float64,169682,55.18,,,,
+application_train,NONLIVINGAREA_MEDI,float64,169682,55.18,,,,
+application_train,ELEVATORS_AVG,float64,163891,53.3,,,,
+application_train,ELEVATORS_MODE,float64,163891,53.3,,,,
+application_train,ELEVATORS_MEDI,float64,163891,53.3,,,,
+application_train,WALLSMATERIAL_MODE,object,156341,50.84,,,,
+application_train,APARTMENTS_AVG,float64,156061,50.75,,,,
+application_train,APARTMENTS_MODE,float64,156061,50.75,,,,
+application_train,APARTMENTS_MEDI,float64,156061,50.75,,,,
+application_train,ENTRANCES_AVG,float64,154828,50.35,,,,
+application_train,ENTRANCES_MODE,float64,154828,50.35,,,,
+application_train,ENTRANCES_MEDI,float64,154828,50.35,,,,
+application_train,LIVINGAREA_AVG,float64,154350,50.19,,,,
+application_train,LIVINGAREA_MODE,float64,154350,50.19,,,,
+application_train,LIVINGAREA_MEDI,float64,154350,50.19,,,,
+application_train,HOUSETYPE_MODE,object,154297,50.18,,,,
+application_train,FLOORSMAX_AVG,float64,153020,49.76,,,,
+application_train,FLOORSMAX_MODE,float64,153020,49.76,,,,
+application_train,FLOORSMAX_MEDI,float64,153020,49.76,,,,
+application_train,YEARS_BEGINEXPLUATATION_AVG,float64,150007,48.78,,,,
+application_train,YEARS_BEGINEXPLUATATION_MODE,float64,150007,48.78,,,,
+application_train,YEARS_BEGINEXPLUATATION_MEDI,float64,150007,48.78,,,,
+application_train,TOTALAREA_MODE,float64,148431,48.27,,,,
+application_train,EMERGENCYSTATE_MODE,object,145755,47.4,,,,
+application_train,OCCUPATION_TYPE,object,96391,31.35,,,,
+application_train,EXT_SOURCE_3,float64,60965,19.83,,,,
+application_train,AMT_REQ_CREDIT_BUREAU_HOUR,float64,41519,13.5,,,,
+application_train,AMT_REQ_CREDIT_BUREAU_DAY,float64,41519,13.5,,,,
+application_train,AMT_REQ_CREDIT_BUREAU_WEEK,float64,41519,13.5,,,,
+application_train,AMT_REQ_CREDIT_BUREAU_MON,float64,41519,13.5,,,,
+application_train,AMT_REQ_CREDIT_BUREAU_QRT,float64,41519,13.5,,,,
+application_train,AMT_REQ_CREDIT_BUREAU_YEAR,float64,41519,13.5,,,,
+application_train,NAME_TYPE_SUITE,object,1292,0.42,,,,
+application_train,OBS_30_CNT_SOCIAL_CIRCLE,float64,1021,0.33,,,,
+application_train,DEF_30_CNT_SOCIAL_CIRCLE,float64,1021,0.33,,,,
+application_train,OBS_60_CNT_SOCIAL_CIRCLE,float64,1021,0.33,,,,
+application_train,DEF_60_CNT_SOCIAL_CIRCLE,float64,1021,0.33,,,,
+application_train,EXT_SOURCE_2,float64,660,0.21,,,,
+application_train,AMT_GOODS_PRICE,float64,278,0.09,,,,
+application_train,AMT_ANNUITY,float64,12,0.0,,,,
+application_train,CNT_FAM_MEMBERS,float64,2,0.0,,,,
+application_train,DAYS_LAST_PHONE_CHANGE,float64,1,0.0,,,,
+bureau,AMT_ANNUITY,float64,1226791,71.47,,,,
+bureau,AMT_CREDIT_MAX_OVERDUE,float64,1124488,65.51,,,,
+bureau,DAYS_ENDDATE_FACT,float64,633653,36.92,,,,
+bureau,AMT_CREDIT_SUM_LIMIT,float64,591780,34.48,,,,
+bureau,AMT_CREDIT_SUM_DEBT,float64,257669,15.01,,,,
+bureau,DAYS_CREDIT_ENDDATE,float64,105553,6.15,,,,
+bureau,AMT_CREDIT_SUM,float64,13,0.0,,,,
+credit_card_balance,AMT_PAYMENT_CURRENT,float64,767988,20.0,,,,
+credit_card_balance,AMT_DRAWINGS_ATM_CURRENT,float64,749816,19.52,,,,
+credit_card_balance,AMT_DRAWINGS_OTHER_CURRENT,float64,749816,19.52,,,,
+credit_card_balance,AMT_DRAWINGS_POS_CURRENT,float64,749816,19.52,,,,
+credit_card_balance,CNT_DRAWINGS_ATM_CURRENT,float64,749816,19.52,,,,
+credit_card_balance,CNT_DRAWINGS_OTHER_CURRENT,float64,749816,19.52,,,,
+credit_card_balance,CNT_DRAWINGS_POS_CURRENT,float64,749816,19.52,,,,
+credit_card_balance,AMT_INST_MIN_REGULARITY,float64,305236,7.95,,,,
+credit_card_balance,CNT_INSTALMENT_MATURE_CUM,float64,305236,7.95,,,,
+installments_payments,DAYS_ENTRY_PAYMENT,float64,2905,0.02,,,,
+installments_payments,AMT_PAYMENT,float64,2905,0.02,,,,
+previous_application,RATE_INTEREST_PRIMARY,float64,1664263,99.64,,,,
+previous_application,RATE_INTEREST_PRIVILEGED,float64,1664263,99.64,,,,
+previous_application,AMT_DOWN_PAYMENT,float64,895844,53.64,,,,
+previous_application,RATE_DOWN_PAYMENT,float64,895844,53.64,,,,
+previous_application,NAME_TYPE_SUITE,object,820405,49.12,,,,
+previous_application,DAYS_FIRST_DRAWING,float64,673065,40.3,,,,
+previous_application,DAYS_FIRST_DUE,float64,673065,40.3,,,,
+previous_application,DAYS_LAST_DUE_1ST_VERSION,float64,673065,40.3,,,,
+previous_application,DAYS_LAST_DUE,float64,673065,40.3,,,,
+previous_application,DAYS_TERMINATION,float64,673065,40.3,,,,
+previous_application,NFLAG_INSURED_ON_APPROVAL,float64,673065,40.3,,,,
+previous_application,AMT_GOODS_PRICE,float64,385515,23.08,,,,
+previous_application,AMT_ANNUITY,float64,372235,22.29,,,,
+previous_application,CNT_PAYMENT,float64,372230,22.29,,,,
+previous_application,PRODUCT_COMBINATION,object,346,0.02,,,,
+previous_application,AMT_CREDIT,float64,1,0.0,,,,
