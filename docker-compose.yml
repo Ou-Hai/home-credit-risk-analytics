@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: homecredit-postgres
+    environment:
+      POSTGRES_USER: hc
+      POSTGRES_PASSWORD: hc_password
+      POSTGRES_DB: homecredit
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata_homecredit:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hc -d homecredit"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  pgdata_homecredit:

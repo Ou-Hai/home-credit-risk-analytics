@@ -19,3 +19,7 @@ notebooks/.env
 # ===== macOS =====
 .DS_Store
 notebooks/.DS_Store
+
+#===== IDE ===== 
+.vscode/
+homecredit.session.sql
