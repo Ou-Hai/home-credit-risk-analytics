@@ -1,8 +1,8 @@
-# Home Credit Risk Analytics
-
 <p align="center">
   <img src="images/home_credit_logo.png" width="320">
 </p>
+
+# Home Credit Risk Analytics
 
 ## Project Overview
 This project is an end-to-end data analytics and machine learning pipeline built on real-world financial credit data.
