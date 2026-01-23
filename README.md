@@ -1,5 +1,9 @@
 # Home Credit Risk Analytics
 
+<p align="center">
+  <img src="images/home_credit_logo.png" width="320">
+</p>
+
 ## Project Overview
 This project is an end-to-end data analytics and machine learning pipeline built on real-world financial credit data.
 The objective is to support risk-based lending decisions by transforming raw, heterogeneous and noisy data into
