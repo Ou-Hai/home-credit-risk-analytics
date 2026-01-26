@@ -432,8 +432,8 @@ Start the API:
 uv run uvicorn api.main:app --reload
 ```
 
-•	Docs: http://127.0.0.1:8000/docs
-•	Endpoint: POST /predict
+- Docs: http://127.0.0.1:8000/docs
+- Endpoint: POST /predict
 
 Example request:
 ```json
@@ -467,6 +467,6 @@ uv run streamlit run dashboard/app.py
 ```
 
 The interface allows non-technical users to:
-	•	Input basic applicant information
-	•	View PD, risk level, and recommendation
-	•	See which features were auto-filled
+- Input basic applicant information
+- View PD, risk level, and recommendation
+- See which features were auto-filled
