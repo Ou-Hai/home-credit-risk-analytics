@@ -1,8 +1,8 @@
+# Home Credit Risk Analytics
+
 <p align="center">
   <img src="images/home_credit_logo.png" width="320">
 </p>
-
-# Home Credit Risk Analytics
 
 ## Project Overview
 This project is an end-to-end data analytics and machine learning pipeline built on real-world financial credit data.
@@ -427,13 +427,16 @@ This project deploys a credit risk model as a production-style API with a lightw
 ## FastAPI Service
 
 Start the API:
+
 ```bash
 uv run uvicorn api.main:app --reload
+```
 
 •	Docs: http://127.0.0.1:8000/docs
 •	Endpoint: POST /predict
 
 Example request:
+```json
 
 {
   "features": {
@@ -443,21 +446,25 @@ Example request:
     "amt_income_total": 120000
   }
 }
+```
 
 Example response:
-
+```json
 {
   "default_probability_pct": 6.8,
   "risk_band": "LOW",
   "recommendation": "APPROVE",
   "data_quality": "LOW"
 }
+```
 
-Streamlit Demo
+## Streamlit Demo
 
 Run the demo UI (in a separate terminal):
 
+```bash
 uv run streamlit run dashboard/app.py
+```
 
 The interface allows non-technical users to:
 	•	Input basic applicant information
