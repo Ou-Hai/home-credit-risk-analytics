@@ -406,3 +406,60 @@ At this operating point, the model captures a large share of default cases while
   - Suitable as a production-oriented candidate model
 
 The project adopts a **dual-model strategy**, combining interpretability and predictive power, which reflects real-world credit risk modeling practices.
+
+---
+
+## Credit Risk Scoring API & Demo
+
+This project deploys a credit risk model as a production-style API with a lightweight Streamlit demo for business users.
+
+---
+
+## Overview
+
+- **Model**: HistGradientBoostingClassifier  
+- **Output**: Default Probability (PD), Risk Band, Recommendation  
+- **Features**: Partial input supported, missing features auto-filled  
+- **Goal**: Make model results interpretable for credit decision-making
+
+---
+
+## FastAPI Service
+
+Start the API:
+```bash
+uv run uvicorn api.main:app --reload
+
+•	Docs: http://127.0.0.1:8000/docs
+•	Endpoint: POST /predict
+
+Example request:
+
+{
+  "features": {
+    "ext_source_1": 0.38,
+    "ext_source_2": 0.45,
+    "ext_source_3": 0.50,
+    "amt_income_total": 120000
+  }
+}
+
+Example response:
+
+{
+  "default_probability_pct": 6.8,
+  "risk_band": "LOW",
+  "recommendation": "APPROVE",
+  "data_quality": "LOW"
+}
+
+Streamlit Demo
+
+Run the demo UI (in a separate terminal):
+
+uv run streamlit run dashboard/app.py
+
+The interface allows non-technical users to:
+	•	Input basic applicant information
+	•	View PD, risk level, and recommendation
+	•	See which features were auto-filled
