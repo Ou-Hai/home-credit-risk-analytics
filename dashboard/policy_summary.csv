@@ -1,0 +1,2 @@
+threshold,reject_rate_pct,approve_rate_pct,rejected_bad_rate_pct,approved_bad_rate_pct,bad_capture_recall_pct,n_total,n_rejected,n_approved
+0.07577527523582159,36.92,63.08,15.31,3.84,70.01,61503,22704,38799

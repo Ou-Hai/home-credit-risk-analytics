@@ -470,3 +470,13 @@ The interface allows non-technical users to:
 - Input basic applicant information
 - View PD, risk level, and recommendation
 - See which features were auto-filled
+
+---
+
+## Credit Risk Dashboard
+
+A Tableau dashboard was created to visualize portfolio-level credit risk and customer risk profiles.  
+It includes key KPIs, default rate segmentation by customer characteristics, and a drill-down filter by employment status.
+
+🔗 **Tableau Public Dashboard:**  
+https://public.tableau.com/app/profile/ou.hai/viz/HomeCredit_CreditRiskDashboard

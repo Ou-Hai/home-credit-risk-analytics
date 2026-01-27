@@ -1,0 +1,5 @@
+score_band,application_cnt,application_share_pct,default_rate_pct,default_cnt,cum_application_share_pct,cum_default_capture_pct,threshold_band
+0.00–0.20,57046,92.75,6.45,3679,92.75,74.1,⬅ threshold
+0.20–0.40,4100,6.67,26.8,1099,99.42,96.23,
+0.40–0.60,344,0.56,51.74,178,99.98,99.82,
+0.60–0.80,13,0.02,69.23,9,100.0,100.0,
