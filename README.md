@@ -5,72 +5,18 @@
 </p>
 
 ## Project Overview
-This project is an end-to-end data analytics and machine learning pipeline built on real-world financial credit data.
-The objective is to support risk-based lending decisions by transforming raw, heterogeneous and noisy data into
-actionable insights for financial institutions.
 
-The project emphasizes not only predictive performance, but also data cleaning, data engineering,
-economic interpretation and decision support.
+This project focuses on **credit risk analysis and default prediction** in a consumer lending context.
 
----
+Inaccurate risk assessment can lead to financial losses:
+- Underestimating risk increases defaults  
+- Overestimating risk rejects good customers and limits growth  
 
-## Business Context
-Financial institutions face the challenge of assessing credit risk using incomplete, inconsistent
-and high-dimensional data. Poor risk assessment may lead to higher default rates, financial losses
-or unfair credit allocation.
-
-This project aims to explore how data analytics and machine learning can be used to better understand
-credit default risk and support more informed lending decisions.
-
----
-
-## Business Questions
-The project focuses on answering the following key business questions:
-
-1. **Who is more likely to default on a loan?**  
-   Identify borrower profiles with higher default probability based on demographic, financial
-   and historical credit information.
-
-2. **Which economic and financial variables are the most important drivers of default risk?**  
-   Analyze the relative importance of income, employment, education, credit history and
-   repayment behavior in explaining loan default.
-
-3. **Are there systematic risk segments within the customer population?**  
-   Investigate whether distinct risk groups exist and how they differ in terms of default rates
-   and financial characteristics.
-
-4. **How can historical credit behavior improve default prediction for new applicants?**  
-   Evaluate how previous loans, repayments and credit bureau information contribute to more
-   accurate risk assessment.
-
----
-
-## Dataset
-The project uses the **Home Credit Default Risk** dataset, provided by a real financial institution.
-The dataset consists of multiple relational tables containing:
-
-- Applicant demographic and financial information
-- Historical credit bureau records
-- Previous loan applications
-- Installment and repayment histories
-
-The data reflects real-world challenges such as missing values, inconsistent formats and varying
-levels of granularity across tables.
-
----
-
-## Project Scope
-The project follows a complete data analytics pipeline:
-
-- Data ingestion and exploration
-- Data quality assessment and cleaning
-- Feature engineering with economic interpretation
-- Relational database design and ETL
-- SQL-based analytical queries
-- Machine learning modeling for default prediction
-- Model evaluation and interpretation
-- Dashboard for decision support
-- API for model inference (optional, advanced)
+The goal of this project is to build an **end-to-end analytics pipeline** that turns raw credit data into **actionable risk insights and decision support**, including:
+- Risk analysis using SQL  
+- Interactive dashboards  
+- Predictive modeling  
+- A deployable API and demo application  
 
 ---
 
@@ -106,210 +52,88 @@ The project follows a complete data analytics pipeline:
 
 ---
 
-## Data Cleaning & Feature Preparation 
+## Data & Key Challenges
 
-### Missing Values & Placeholders
-- Performed a systematic missing value audit across all raw tables.
-- Missing values are **not treated as random noise**, but categorized as:
-  - Business non-applicability (e.g. housing-related features)
-  - Implicit absence (e.g. no car → `OWN_CAR_AGE`)
-  - Boundary or partial records (e.g. POS monthly data)
-  - Technical placeholders (e.g. `365243` in previous applications)
-- Strategy: **keep rows, preserve NaN, add indicator features when meaningful**.
-- Technical placeholder values are explicitly converted to `NaN` to avoid misleading numerical interpretation.
+The dataset represents real-world credit data with:
+- Multiple relational tables (applications, bureau records, repayment history)
+- One customer appearing across many records
+- Strong class imbalance (default rate around 8%)
 
----
-
-### Numerical Outlier Handling
-- **Age**: Converted from `DAYS_BIRTH` to `AGE_YEARS`; implausible values (<18 or >100) are flagged and set to `NaN`.
-- **Income (`AMT_INCOME_TOTAL`)**:
-  - Non-positive values are flagged as invalid.
-  - Extreme values are clipped at the 1%–99% quantiles.
-- **Credit amount (`AMT_CREDIT`)**:
-  - Handled with the same strategy as income (flag + quantile clipping).
-
-Principle: **clip instead of drop, flag instead of hide**.
+Key challenges include:
+- High missingness across many features  
+- Mixed business-driven and technical missing values  
+- Strongly skewed financial variables  
+- The need to aggregate raw data into applicant-level features  
 
 ---
 
-### Train / Test Consistency
-- Identical cleaning rules are applied to both training and test datasets.
-- No test statistics are used during preprocessing.
-- Cleaned datasets share consistent schemas and data types.
+## Data Cleaning Strategy
+
+A **risk-aware and careful cleaning strategy** was applied:
+
+- Missing values were **kept and flagged** where possible, as missingness itself can be a risk signal  
+- Known technical placeholders were converted to null values  
+- Extreme values were **clipped instead of dropping rows** to reduce outlier impact while preserving sample size  
+- Identical rules were applied to training and validation data to ensure consistency  
 
 ---
 
-### Cleaned Data Outputs
-At this stage, the following cleaned datasets are produced (Parquet format):
-- `application_train_clean.parquet`
-- `application_test_clean.parquet`
-- `previous_application_clean.parquet`
+## Key Business Questions
 
-These datasets serve as inputs for feature engineering, SQL modeling, and machine learning.
+This analysis is guided by four business-driven questions:
 
----
-
-### Design Rationale (Short)
-- Prefer **keep + flag** over row deletion.
-- Treat missingness and anomalies as potential risk signals.
-- Apply conservative, interpretable rules aligned with credit risk practice.
+1. Who is more likely to default?  
+2. Does previous loan refusal signal higher future risk?  
+3. How does repayment behavior affect default risk?  
+4. Do multiple risk signals reinforce each other?  
 
 ---
 
-## Risk Analysis & SQL Insights 
+## Risk Analysis & Insights
 
-Based on the analytical views in the `mart` schema, a series of SQL-based risk analyses were conducted to explore the relationship between historical behavior and default risk.
+### Customer Profile Risk
+Higher default risk concentrates among:
+- Lower education levels  
+- Lower income groups  
+- Single applicants  
 
-### Credit History & Bureau Risk
-- **Previous refusal rate vs default risk**  
-  Applicants are segmented by historical loan refusal rate to assess how repeated rejections correlate with higher default probability.
-- **Credit bureau debt exposure**  
-  Default rates are analyzed across total bureau debt buckets (from no bureau record to high outstanding debt).
-- **Maximum overdue amount**  
-  Risk is evaluated by the largest historical overdue amount reported in credit bureau data.
-- **Number of bureau credits**  
-  Applicants are grouped by the count of past bureau credits to capture credit depth vs risk.
+However, demographic features alone provide limited risk separation.
+
+---
+
+### Credit Bureau Risk
+- Default risk increases as debt levels rise  
+- Applicants with **no bureau records** show risk levels similar to highly indebted customers  
+- Bureau data enables strong risk segmentation  
 
 ---
 
 ### Repayment Behavior
-- **Repayment punctuality**  
-  Default risk is analyzed by installment late-rate buckets (never late → often late).
-- **Average payment delay severity**  
-  Mean days late are bucketed into severity bands (on-time, minor, moderate, severe delay).
-
-These analyses highlight repayment discipline as a strong behavioral risk signal.
+- Frequent late payments are the strongest behavioral risk signal  
+- Default risk rises sharply with repayment delinquency  
 
 ---
 
-### Combined Risk Segmentation
-- **Bureau exposure × repayment behavior**  
-  Joint analysis of debt level and late-payment behavior to identify high-risk combinations.
-- **Customer risk tiers**  
-  Aggregated risk tiers are evaluated for customer count and default rate to support policy simulation.
+### Combined Risk Effects
+Default risk increases significantly when **high debt burden and poor repayment behavior occur together**,  
+showing that **combined signals make risk easier to understand than single features on their own**.
 
 ---
 
-### Demographic & Socioeconomic Risk Profiles
-Using the customer risk profile view:
-- **Income bands**
-- **Education level**
-- **Age groups**
-- **Family structure (number of children)**
-- **Occupation type**
+## Feature Engineering & Modeling
 
-Default rates are compared across segments to identify systematic risk patterns.
+Features were grouped into three main categories:
+- Demographic features  
+- Credit bureau features  
+- Behavioral and repayment features  
 
----
+Two models were built and compared:
+- **Logistic Regression** as a simple baseline model  
+- **Gradient Boosting** as a more flexible, non-linear model  
 
-### Policy-Oriented Metrics
-- Simulated impact of excluding high-risk tiers on overall default rate.
-- Monitoring of external data availability (e.g. external score missing rate).
-
----
-
-### Design Notes
-- All analyses are performed via **reusable SQL views**, not ad-hoc queries.
-- Segmentation is rule-based and interpretable.
-- Results are suitable for dashboards, reporting, and downstream modeling.
-
-This analytical layer bridges cleaned data, business insight, and credit risk decision support.
-
----
-
-## Feature Engineering 
-
-After data cleaning and analytical validation, a structured feature engineering process was applied to transform raw application- and bureau-level data into model-ready features with strong business interpretability.
-
----
-
-### Feature Engineering Principles
-
-- **Business-driven design**: All features are directly interpretable in a credit risk context (affordability, employment stability, external creditworthiness, and credit bureau exposure).
-- **Missingness as signal**: Missing values are not blindly imputed when they reflect meaningful absence (e.g. no credit history or no external score).
-- **Distribution-aware transformations**: Strongly skewed numerical variables are log-transformed to improve model stability.
-- **Train–validation consistency**: The same feature definitions and preprocessing logic are applied across all data splits to avoid leakage.
-
----
-
-### Numerical Features
-
-#### Affordability & Loan Characteristics
-- `amt_income_total_log` – log-transformed total income  
-- `amt_credit_log` – log-transformed credit amount  
-- `amt_annuity_log` – log-transformed annuity  
-- `debt_to_income` – annuity-to-income ratio  
-
-Monetary variables exhibit strong right-skewed distributions, which is common in credit risk data. Log transformations reduce the impact of extreme values while preserving relative differences.
-
-#### Employment Stability
-- `is_currently_employed` – employment indicator derived from placeholder values  
-- `years_employed` – cleaned employment duration in years  
-
-Employment-related placeholder values (e.g. `365243`) are treated as informative signals rather than simple missing values.
-
-#### External Credit Scores
-- `ext_source_1`  
-- `ext_source_2`  
-- `ext_source_3`  
-
-External scores are kept on their original scale to preserve interpretability. Their missingness is explicitly monitored as a risk-related signal.
-
-#### Credit Bureau Aggregates
-- `bureau_sum_debt_log` – log-transformed total historical debt  
-- `bureau_active_cnt` – number of active bureau credits  
-- `bureau_sum_overdue` – total overdue amount  
-
-These features summarize historical credit exposure and repayment pressure.
-
----
-
-### Categorical Features
-
-The following categorical variables are included and later encoded using one-hot encoding:
-
-- `name_contract_type`  
-- `name_income_type`  
-- `name_education_type`  
-- `name_family_status`  
-- `name_housing_type`  
-
----
-
-### Statistical Validation 
-
-- Pairwise correlations are reviewed across numerical features.
-- Expected correlations (e.g. credit–annuity) are observed.
-- No severe multicollinearity is detected across major feature groups.
-
-- Chi-square tests are applied to assess the association between categorical features and the target.
-- Effect size is evaluated using **Cramér’s V** to control for large-sample significance.
-- Results confirm that several categorical variables carry **statistically meaningful but moderate signal**, justifying their inclusion in modeling.
-
----
-
-### Modeling-Time Missing Value Handling
-
-- **Numerical features**: median imputation  
-- **Categorical features**: most frequent category  
-- **Informative missingness**: preserved upstream when relevant (e.g. external score availability)
-
----
-
-### Final Feature Set
-- **Grain**: one row per loan application
-- **Features**:
-  - Transformed numerical features
-  - Selected categorical features
-- **Target**: default indicator (`target`)
-
-The final feature matrix is saved in Parquet format and serves as direct input for model training.
-
----
-
-## Modeling
-
-Two models were trained to balance interpretability and predictive performance: a linear baseline model and a non-linear tree-based model.
+Due to strong class imbalance, model performance was evaluated using **ranking-based metrics**:
+- ROC–AUC to assess overall ranking quality  
+- PR–AUC to better reflect performance in identifying defaulters  
 
 ---
 
@@ -415,16 +239,7 @@ This project deploys a credit risk model as a production-style API with a lightw
 
 ---
 
-## Overview
-
-- **Model**: HistGradientBoostingClassifier  
-- **Output**: Default Probability (PD), Risk Band, Recommendation  
-- **Features**: Partial input supported, missing features auto-filled  
-- **Goal**: Make model results interpretable for credit decision-making
-
----
-
-## FastAPI Service
+### FastAPI Service
 
 Start the API:
 
@@ -435,30 +250,7 @@ uv run uvicorn api.main:app --reload
 - Docs: http://127.0.0.1:8000/docs
 - Endpoint: POST /predict
 
-Example request:
-```json
-
-{
-  "features": {
-    "ext_source_1": 0.38,
-    "ext_source_2": 0.45,
-    "ext_source_3": 0.50,
-    "amt_income_total": 120000
-  }
-}
-```
-
-Example response:
-```json
-{
-  "default_probability_pct": 6.8,
-  "risk_band": "LOW",
-  "recommendation": "APPROVE",
-  "data_quality": "LOW"
-}
-```
-
-## Streamlit Demo
+### Streamlit Demo
 
 Run the demo UI (in a separate terminal):
 
@@ -466,10 +258,7 @@ Run the demo UI (in a separate terminal):
 uv run streamlit run dashboard/app.py
 ```
 
-The interface allows non-technical users to:
-- Input basic applicant information
-- View PD, risk level, and recommendation
-- See which features were auto-filled
+This demonstrates how analytics can move beyond analysis into **practical decision support**.
 
 ---
 
@@ -480,3 +269,39 @@ It includes key KPIs, default rate segmentation by customer characteristics, and
 
 🔗 **Tableau Public Dashboard:**  
 https://public.tableau.com/app/profile/ou.hai/viz/HomeCredit_CreditRiskDashboard
+
+---
+
+## Key Takeaways
+
+- Behavioral and bureau signals dominate static demographics  
+- Missing data often reflects uncertainty-driven risk  
+- Non-linear models improve risk ranking under class imbalance  
+- Decision thresholds must align with business risk appetite  
+
+---
+
+## Challenges
+
+This project involves several important challenges:
+
+- Credit data is **high-dimensional and highly relational**, requiring careful aggregation and feature design  
+- Risk signals come from **multiple dimensions**, which makes them harder to explain clearly  
+- Strong class imbalance requires **business-driven evaluation and threshold selection**, rather than default model settings  
+
+---
+
+## Next Steps
+
+Future improvements could further enhance risk identification and decision quality:
+
+- Add **time-based repayment behavior** to capture early warning signals  
+- Use **more detailed behavioral features** to improve risk differentiation  
+- Further **tune decision thresholds based on business needs** and risk appetite
+
+---
+
+## Presentation
+
+- 📊 **Project Presentation Slides**:  
+  https://www.canva.com/design/DAG_mkUmP2Q/rdIciHDiB1ti1N1dh8ayRw/edit?utm_content=DAG_mkUmP2Q&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
